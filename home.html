@@ -1,0 +1,35 @@
+<article ng-switch on="aliveCount()">
+    <h2 ng-switch-when="1">
+      There is only one player left. The game is finished!
+      <br/>
+      Congratulations
+      <span ng-repeat="player in players | alive">
+        {{player.name}}
+      </span>!
+    </h2>
+    <h2 ng-switch-when="2">
+      There are only two players left! Who will win?
+    </h2>
+    <h2 ng-switch-default>
+      There are currently
+      <span>{{aliveCount()}} players</span>
+      alive out of
+      <span>{{players.length}} players.</span>
+    </h2>
+</article>
+
+<article>
+  <h3>Recent Murders</h3>
+
+  <ul id="murderList">
+    <li ng-repeat="murder in murders | orderBy:'datetime':'true' |limitTo:murderLimit" class="flexbox flex-children">
+       <p><img src="images/icons/user.png"/>{{murder.murderer}}</p>
+       <p class="killIcon"><img ng-src="images/icons/{{murder.killIcon}}"/></p>
+       <p><img src="images/icons/skull.png"/>{{murder.victim}}</p>
+       <p><img src="images/icons/google_maps.png"/>{{murder.loc}}</p>
+       <p><img src="images/icons/clock.png"/>{{murder.datetime | date:'medium'}}</p>
+    </li>
+  </ul>
+
+  Show the <input type="number" ng-model="murderLimit" ng-init="murderLimit=10"></input> most recent murders.
+</article>

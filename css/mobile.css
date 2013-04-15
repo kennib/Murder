@@ -1,0 +1,16 @@
+body {
+  margin: 0px;
+}
+
+nav {
+  display: inline;
+}
+
+#murderList > li > p > {
+  text-align: center;
+}
+
+#murderList > li > p > img {
+  display: block;
+}
+

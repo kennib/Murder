@@ -1,0 +1,8 @@
+<div id="murderTime">
+  <input type="date" ng-model="date" ng-change="updateTime()">
+  <input type="text" ng-model="time" ng-change="updateTime()">
+  Speed (seconds per second): <input type="number" ng-model="speed">
+  <input type="button" ng-hide="playing" value="Play from start to end" ng-click="playing=true; play(murders[0].datetime, murders[murders.length-1].datetime)" class="btn btn-success">
+  <input type="button" ng-hide="playing" value="Continue" ng-click="playing=true; play(datetime, murders[murders.length-1].datetime)" class="btn">
+  <input type="button" ng-show="playing" value="Stop" ng-click="playing=false" class="btn btn-danger">
+</div>

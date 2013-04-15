@@ -1,0 +1,10 @@
+<article>
+  <h2>Score Board</h2>
+  <ul id="murderList">
+    <li ng-repeat="player in players | orderBy:['-kills', '-alive', 'type']" class="flexbox flex-children living-{{player.alive}}">
+      <p><img src="images/icons/user.png"/>{{player.name}}</p>
+      <p><img src="images/icons/nameplate.png">{{player.type}}</p>
+      <p><img src="images/icons/skull.png"/>{{player.kills}}</p>
+    </li>
+  </ul>
+</article>

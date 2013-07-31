@@ -1,10 +1,12 @@
-angular.module('murder', ['murderdata', 'murderstats', 'murdergraph', 'murdermaps']).
+angular.module('murder', ['murderdata', 'murderstats', 'murdergraph', 'murderplot', 'murdermaps']).
   config(function($routeProvider) {
     $routeProvider.
       when('/', {controller:MurderStats, templateUrl:'home.html'}).
       when('/scoreboard', {controller:MurderStats, templateUrl:'scoreboard.html'}).
       when('/murdergraph', {controller:MurderStats, templateUrl:'murdergraph.html'}).
       when('/graph', {redirectTo:'/murdergraph'}).
+      when('/murderplot', {controller:MurderStats, templateUrl:'murderplot.html'}).
+      when('/plot', {redirectTo:'/murderplot'}).
       when('/murdermap', {controller:MurderStats, templateUrl:'murdermap.html'}).
       when('/map', {redirectTo:'/murdermap'}).
       when('/lodgekill', {controller:LodgeCtrl, templateUrl:'lodgekill.html'}).

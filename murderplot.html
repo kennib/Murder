@@ -1,0 +1,44 @@
+<style>
+  body {
+    font: 10px sans-serif;
+  }
+  
+  .axis {
+    z-index: 100;
+  }
+  
+  .axis line {
+    stroke: #000;
+  }
+
+  .axis path {
+    fill: none;
+    stroke: #000;
+  }
+
+  .axis + .axis g text {
+    display: none;
+  }
+  
+  label { 
+    display: inline-block;
+    padding-left: 3px;
+  }
+</style>
+
+<h2>Murders per hour of the day</h2>
+
+<div id="murderPlot" murder-plot murders="murders | murderBefore:datetime" time="datetime"></div>
+
+<div class="flexbox flex-children">
+  <p><input type="checkbox" id="showAxes" ng-model="showAxes" ng-init="showAxes=true"></input><label for="showAxes"> Show Axes</label></p>
+</div>
+
+<div murder-time update="updateGraph"></div>
+
+<ul>
+  <li ng-repeat="murder in murders | murderBefore:datetime">
+     {{murder.murderer}} killed {{murder.victim}} on {{murder.datetime | date:'fullDate'}} {{murder.datetime | date:'mediumTime'}}
+  </li>
+</ul>
+

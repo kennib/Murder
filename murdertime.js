@@ -19,7 +19,7 @@ angular.module('murderstats', ['murderdata']).
         
         // Function to update datetime
         scope.updateTime = function() {
-          scope.datetime = new Date(scope.date+' '+scope.time);
+          scope.datetime = new Date($filter('date')(scope.date, 'yyyy/MM/dd')+' '+scope.time);
           // Call the update callback with murders before the given time
           var m = $filter('murderBefore')(scope.murders, scope.datetime);
           var cb = scope[attrs.update];

@@ -17,6 +17,9 @@ angular.module('murderstats', ['murderdata']).
         scope.date = $filter('date')(scope.datetime, 'yyyy-MM-dd');
         scope.time = $filter('date')(scope.datetime, 'HH:mm');
         
+				// Datetime progress in the game
+				scope.progress = 1.0;
+
         // Function to update datetime
         scope.updateTime = function() {
           scope.datetime = new Date($filter('date')(scope.date, 'yyyy/MM/dd')+' '+scope.time);
@@ -31,16 +34,23 @@ angular.module('murderstats', ['murderdata']).
         // Real time between updates in milliseconds
         scope.step = 500;
 
+
         // Function to play the graph over time
         scope.play = function(from, to) {
+					// Get the boundary times
+					var startTime = scope.murders[0].datetime;
+					var endTime = scope.murders[scope.murders.length-1].datetime;
+
           // Convert to epoch time
           from = from.valueOf();
-          to = Math.min(to.valueOf(), scope.murders[scope.murders.length-1].datetime);
+          to = Math.min(to.valueOf(), endTime);
+					
 
           // Play per step
           scope.date = $filter('date')(from, 'yyyy-MM-dd');
           scope.time = $filter('date')(from, 'HH:mm');
           scope.updateTime();
+					scope.progress = (scope.datetime.valueOf()-startTime)/(endTime-startTime);
           
           // Next Step
           from += scope.speed*scope.step;

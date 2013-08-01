@@ -1,4 +1,8 @@
 <div id="murderTime">
+	<div class="progress">
+	  <div class="progress-bar" style="width: {{ progress * 100 || 0 }}%;"></div>
+	</div>
+
 	<form class="form-inline">
 		<input type="date" ng-model="date" ng-change="updateTime()" size="10" class="form-control">
 		<input type="text" ng-model="time" ng-change="updateTime()" size="5" class="form-control">

@@ -172,8 +172,14 @@ angular.module('murdergraph', [])
              .attr("cy", function(d) { return d.y; })
         
         svg.selectAll('text.playerName')
-             .attr("x", function(d) { return Math.floor(d.x - this.getBBox().width/2); })
-             .attr("y", function(d) { return Math.floor(d.y + d.radius); })
+             .attr("x", function(d) {
+               if ((scope.showAlive && d.alive) || (scope.showDead && !d.alive))
+						 		 return Math.floor(d.x - this.getBBox().width/2);
+						 })
+             .attr("y", function(d) {
+               if ((scope.showAlive && d.alive) || (scope.showDead && !d.alive))
+						 	   return Math.floor(d.y + d.radius);
+						 })
              .attr("visibility", function(d) {
                if ((scope.showAlive && d.alive) || (scope.showDead && !d.alive))
                  return 'visible';

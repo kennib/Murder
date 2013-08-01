@@ -30,6 +30,15 @@
 	</form>
 
   <table id="murderList" class="table table-striped">
+		<thead>
+			<tr>
+				<th>Muderer</th>
+				<th></th>
+				<th>Victim</th>
+				<th>Location</th>
+				<th>Datetime</th>
+			</tr>
+		</thead>
 		<tbody>
 			<tr ng-repeat="murder in murders | orderBy:'datetime':'true' |limitTo:murderLimit" class="flexbox flex-children">
 				 <td><img src="images/icons/user.png"/>{{murder.murderer}}</td>

@@ -5,9 +5,17 @@ angular.module('murderstats', ['murderdata']).
       restrict: 'A',
       templateUrl: 'murdertime.html',
       link: function(scope, elements, attrs) {
-        // Add data to the scope
-        scope.players = players;
-        scope.murders = murders;
+			  // Boundary times
+				scope.startTime = 0;
+			  scope.endTime = 0;
+
+			  // Get the boundary times
+				scope.$watch("murders", function(murders) {
+					if (murders && murders.length > 0) {
+						scope.startTime = scope.murders[0].datetime;
+						scope.endTime = scope.murders[scope.murders.length-1].datetime;
+					}
+			  }, true);
 
         // Boolean for play state
         scope.playing = false;
@@ -37,20 +45,17 @@ angular.module('murderstats', ['murderdata']).
 
         // Function to play the graph over time
         scope.play = function(from, to) {
-					// Get the boundary times
-					var startTime = scope.murders[0].datetime;
-					var endTime = scope.murders[scope.murders.length-1].datetime;
 
           // Convert to epoch time
           from = from.valueOf();
-          to = Math.min(to.valueOf(), endTime);
+          to = Math.min(to.valueOf(), scope.endTime);
 					
 
           // Play per step
           scope.date = $filter('date')(from, 'yyyy-MM-dd');
           scope.time = $filter('date')(from, 'HH:mm');
           scope.updateTime();
-					scope.progress = (scope.datetime.valueOf()-startTime)/(endTime-startTime);
+					scope.progress = (scope.datetime.valueOf()-scope.startTime)/(scope.endTime-scope.startTime);
           
           // Next Step
           from += scope.speed*scope.step;

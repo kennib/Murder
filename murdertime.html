@@ -1,9 +1,9 @@
 <div id="murderTime" class="row">
-	<div class="col-lg-8">
+	<div class="col-lg-9">
 		<div class="row input-group">
 			<span class="input-group-btn">
-				<button ng-disabled="playing" ng-click="playing=true; play(murders[0].datetime, murders[murders.length-1].datetime, true)" class="btn btn-success">&#8634; &#9654;</button>
-				<button ng-hide="playing" ng-disabled="datetime>murders[murders.length-1].datetime" ng-click="playing=true; play(datetime, murders[murders.length-1].datetime)" class="btn">&#9654;</button>
+				<button ng-disabled="playing" ng-click="playing=true; play(startTime, endTime)" class="btn btn-success">&#8634; &#9654;</button>
+				<button ng-hide="playing" ng-disabled="datetime>endTime" ng-click="playing=true; play(datetime, endTime)" class="btn">&#9654;</button>
 				<button ng-show="playing" ng-click="playing=false" class="btn btn-danger">&#10074;&#10074;</button>
 			</span>
 
@@ -18,16 +18,17 @@
 		</div>
 
 		<div class="row">
-			<div class="progress" ng-class="{active: playing, 'progress-striped': playing}">
-				<div class="progress-bar" style="width: {{ progress * 100 }}%;"></div>
+			<span class="col-2"> {{ startTime|date:'fullDate' }} </span>
+			<div class="col-8">
+				<div class="progress" ng-class="{active: playing, 'progress-striped': playing}">
+					<div class="progress-bar" style="width: {{ progress * 100 }}%;"></div>
+				</div>
 			</div>
+			<span class="col-2"> {{ endTime|date:'fullDate' }} </span>
 		</div>
 	</div>
 
-	<div class="col-lg-2">
-	</div>
-
-	<div class="col-lg-2 input-group">
+	<div class="col-12 col-lg-3 input-group">
 		<input type="date" ng-model="date" ng-change="updateTime()" size="10" class="form-control">
 		<input type="text" ng-model="time" ng-change="updateTime()" size="5" class="form-control">
 	</div>

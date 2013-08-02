@@ -47,7 +47,7 @@
     <h2>Extra kill data</h2>
     <div class"form-group">
       <label for="killIcon" class="control-label col-lg-4">Kill Icon</label>
-			<img ng-src="images/icons/{{killIcon}}" class="col-lg-1">
+			<div class="col-lg-1"><img ng-src="images/icons/{{killIcon}}" class=img-responsive"></div>
 			<div class="col-lg-7">
 				<select name="killIcon" ng-model="killIcon" ng-init="killIcon='delete.png'" class="form-control">
 					<option ng-repeat="icon in killIcons">{{icon}}</option>
@@ -56,14 +56,14 @@
     </div>
 
     <div class"form-group">
-      <label for="witnesses" class="control-label col-lg-4">Number of nearby witnesses</label>
+      <label for="witnesses" class="control-label col-lg-4">Number of witnesses</label>
 			<div class="col-lg-8">
 				<input name="witnesses" type="text" ng-model="witnesses" class="form-control">
 	  	</div>
     </div>
 
     <div class"form-group">
-      <label for="activity" class="control-label col-lg-4">Activity victim was engaged in</label>
+      <label for="activity" class="control-label col-lg-4">Activity</label>
 			<div class="col-lg-8">
       	<input name="activity" type="text" ng-model="activity" class="form-control">
 			</div>
@@ -75,10 +75,14 @@
 				<textarea name="comment" type="text" ng-model="comment" class="form-control"></textarea>
 			</div>
     </div>
+  </fieldset>
 
+	<hr class="col-lg-12">
+
+	<div class="col-lg-12">
 		<input type="submit" value="Lodge Kill" class="btn btn-primary">
 		<input type="submit" value="Lodge Kill and return" ng-click="returnHome()" class="btn">
-  </fieldset>
+	</div>
 </form>
 
 <h4 ng-show="lodgedKills.length">Lodged Kills</h4>

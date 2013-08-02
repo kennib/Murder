@@ -2,7 +2,7 @@
 	<div class="col-lg-4 input-group">
 		<span class="input-group-btn">
 			<button ng-disabled="playing" ng-click="playing=true; play(murders[0].datetime, murders[murders.length-1].datetime, true)" class="btn btn-success">&#8634; &#9654;</button>
-			<button ng-hide="playing" ng-click="playing=true; play(datetime, murders[murders.length-1].datetime)" class="btn">&#9654;</button>
+			<button ng-hide="playing" ng-disabled="datetime>murders[murders.length-1].datetime" ng-click="playing=true; play(datetime, murders[murders.length-1].datetime)" class="btn">&#9654;</button>
 			<button ng-show="playing" ng-click="playing=false" class="btn btn-danger">&#10074;&#10074;</button>
 		</span>
 

@@ -1,8 +1,10 @@
-angular.module('murder', ['murderdata', 'murderstats', 'murdergraph', 'murderplot', 'murdermaps']).
+angular.module('murder', ['diagrams', 'murderdata', 'murderstats', 'murdergraph', 'murderplot', 'murdermaps']).
   config(function($routeProvider) {
     $routeProvider.
       when('/', {controller:MurderStats, templateUrl:'home.html'}).
       when('/scoreboard', {controller:MurderStats, templateUrl:'scoreboard.html'}).
+	  when('/murderdiagram/:diagram', {controller:MurderDiagram, templateUrl:'murderdiagram.html'}).
+      when('/diagram/:diagram', {redirectTo:'/murderdiagram/:diagram'}).
       when('/murdergraph', {controller:MurderStats, templateUrl:'murdergraph.html'}).
       when('/graph', {redirectTo:'/murdergraph'}).
       when('/murderplot', {controller:MurderStats, templateUrl:'murderplot.html'}).
@@ -24,6 +26,12 @@ function MurderStats($scope, murders, players) {
     return $scope.players.length - $scope.murders.length;
   };
 };
+
+function MurderDiagram($scope, $routeParams, murders, players) {
+	$scope.diagram = $routeParams.diagram;
+	MurderStats($scope, murders, players);
+}
+
 
 function LodgeCtrl($scope, $filter,
                    UnverifiedMurder, players) {

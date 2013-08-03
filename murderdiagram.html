@@ -1,0 +1,15 @@
+<style>
+</style>
+
+<h1>Murder {{ diagram }}</h1>
+
+<figure diagram="{{ diagram }}" data="murders | before:datetime" ></figure>
+
+<div murder-time></div>
+
+<ul>
+  <li ng-repeat="murder in murders | murderBefore:datetime">
+     {{murder.murderer}} killed {{murder.victim}} on {{murder.datetime | date:'fullDate'}} {{murder.datetime | date:'mediumTime'}}
+  </li>
+</ul>
+

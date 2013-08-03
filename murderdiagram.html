@@ -3,7 +3,7 @@
 
 <h1>Murder {{ diagram }}</h1>
 
-<figure diagram="{{ diagram }}" data="murders | before:datetime" ></figure>
+<figure diagram="diagram" data="players|orderBy:'name'" attribute="kills"></figure>
 
 <div murder-time></div>
 

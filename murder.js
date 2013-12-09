@@ -52,6 +52,7 @@ function LodgeCtrl($scope, $filter,
   };
 
   $scope.submitKill = function() {
+    console.log($scope);
     new UnverifiedMurder().save({
       // Kill data
       datetime: $scope.datetime.valueOf(),

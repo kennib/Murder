@@ -35,14 +35,20 @@
   <hr class="col-lg-12">
 
   <fieldset>
-		<div class"form-group">
+		<div class="form-group">
 			<label for="location" class="control-label col-lg-4">Location of the kill</label>
 			<div class="col-lg-8">
 				<input name="loc" type="text" ng-model="loc" required class="form-control">
 			</div>
 		</div>
 		
-		<div ng-include src="'murderlocation.html'" class="form-group"></div>	
+    <div id="killLocation" class="form-group">
+      <div id="map_canvas" murder-location map="murderMap" marker="murderMarker" class="map pull-right"></div>
+      <div class="form-group">
+        <label class="control-label col-lg-4">Drag the marker to the location of your kill</label>
+        <span class="col-lg-3"><button type="button" ng-click="murderMap.panTo(murderMarker.getPosition())" class="btn">Pan to Marker</button></span>
+      </div>
+    </div>
   </fieldset>
 
 	<hr class="col-lg-12">

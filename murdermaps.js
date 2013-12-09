@@ -1,22 +1,28 @@
 angular.module('murdermaps', [])
   .directive('murderLocation', function() {
-    return function(scope, elements, attrs) {
-      scope.$parent.killPos = new google.maps.LatLng(-33.890679,151.186134); // Women's college by default
+    return {
+      scope: {
+        map: '=',
+        marker: '=',
+      },
+      controller: function($scope, $element, $attrs) {
+        var killPos = new google.maps.LatLng(-33.890679,151.186134); // Women's college by default
 
-      scope.mapOptions = {
-        center: scope.$parent.killPos,
-        zoom: 18,
-        mapTypeId: google.maps.MapTypeId.ROADMAP
-      };
-       
-      scope.murderMap = new google.maps.Map(elements[0], scope.mapOptions);
+        var mapOptions = {
+          center: killPos,
+          zoom: 18,
+          mapTypeId: google.maps.MapTypeId.ROADMAP
+        };
+         
+        $scope.map = new google.maps.Map($element[0], mapOptions);
 
-      scope.$parent.murderMarker = new google.maps.Marker({
-          map: scope.murderMap, 
-          position: scope.$parent.killPos,
-          draggable: true
-      });
-    }
+        $scope.marker = new google.maps.Marker({
+            map: $scope.map, 
+            position: killPos,
+            draggable: true
+        });
+      },
+    };
   })
   .directive('murderMap', function() {
     return function(scope, elements, attrs) {

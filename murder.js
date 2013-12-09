@@ -1,5 +1,5 @@
 angular.module('murder', ['diagrams', 'murderdata', 'murderstats', 'murdergraph', 'murderplot', 'murdermaps']).
-  config(function($routeProvider) {
+  config(function($routeProvider, $locationProvider) {
     $routeProvider.
       when('/', {controller:MurderStats, templateUrl:'home.html'}).
       when('/scoreboard', {controller:MurderStats, templateUrl:'scoreboard.html'}).
@@ -33,7 +33,7 @@ function MurderDiagram($scope, $routeParams, murders, players) {
 }
 
 
-function LodgeCtrl($scope, $filter,
+function LodgeCtrl($scope, $filter, $location,
                    UnverifiedMurder, players) {
   $scope.players = players;
   $scope.killIcons = killIcons;
@@ -52,7 +52,6 @@ function LodgeCtrl($scope, $filter,
   };
 
   $scope.submitKill = function() {
-    console.log($scope);
     new UnverifiedMurder().save({
       // Kill data
       datetime: $scope.datetime.valueOf(),
@@ -78,6 +77,10 @@ function LodgeCtrl($scope, $filter,
         console.log("Error, did not lodge Kill:", error);
       }
     });
+
+    // Scroll to list of kills
+    var pos = document.getElementById('lodged-kills').offsetTop;
+    window.scrollTo(pos);
   };
 
   $scope.returnHome = function() {

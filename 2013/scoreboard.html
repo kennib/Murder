@@ -1,0 +1,19 @@
+<article>
+  <h1>Score Board</h1>
+  <table id="murderList" class="table table-striped">
+		<thead>
+			<tr>
+				<th>Name</th>
+				<th>Type</th>
+				<th>Kills</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="player in players | orderBy:['-kills', '-alive', 'type']" class="flexbox flex-children living-{{player.alive}}">
+				<td><img src="images/icons/user.png"/>{{player.name}}</td>
+				<td><img src="images/icons/nameplate.png">{{player.type}}</td>
+				<td><img src="images/icons/skull.png"/>{{player.kills}}</td>
+			</tr>
+		</tbody>
+  </table>
+</article>

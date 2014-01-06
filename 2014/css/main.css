@@ -4,3 +4,7 @@
   height: 400px;
   margin: 10px;
 }
+
+.verified {
+  background-color: lightgreen;;
+}

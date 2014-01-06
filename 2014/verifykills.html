@@ -14,7 +14,7 @@
       <p>Victim: {{murder.victim}}</p>
       <p>Date / Time: {{murder.datetime | date:'medium'}}</p>
       <p>Location: {{murder.loc}} {{murder.latlng}}</p>
-      <input type="button" ng-click="verify(murder)" value="Verify Kill" class="btn btn-success">
+      <input type="button" ng-click="verify(murder)" value="Verify Kill" class="btn btn-success col-12" ng-disabled="murder.verified == 'verified'">
     </li>
   </ul>
 </article>

@@ -1,0 +1,20 @@
+<article >
+  <h4 ng-show="!loggedin">Password</h4>
+  <input ng-hide="loggedin" type="password" ng-model="password"></input>
+  <input ng-hide="loggedin" type="button" ng-click="login('ncss', password)" value="Login" class="btn"></input>
+  
+  <h4 ng-show="loggedin">Logged in</h4>
+</article>
+
+<article>
+  <h4>Unverified Kills</h4>
+  <ul>
+    <li ng-repeat="murder in unverifiedMurders | orderBy:'datetime'" ng-class="murder.verified" class="unverified">
+      <p>Murderer: {{murder.murderer}}</p>
+      <p>Victim: {{murder.victim}}</p>
+      <p>Date / Time: {{murder.datetime | date:'medium'}}</p>
+      <p>Location: {{murder.loc}} {{murder.latlng}}</p>
+      <input type="button" ng-click="verify(murder)" value="Verify Kill" class="btn btn-success col-12" ng-disabled="murder.verified == 'verified'">
+    </li>
+  </ul>
+</article>

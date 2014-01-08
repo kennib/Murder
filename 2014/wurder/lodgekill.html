@@ -1,0 +1,117 @@
+<h1>Lodge a kill</h1>
+<p class="alert">Enter in the details for your kill. Note that your kill will not appear immediately, one of the tutors running the game must verify it first.</p>
+
+<div id="lodged-kills" class="row" ng-show="lodgedKills.length">
+  <h2>Lodged Kills</h2>
+  <ul>
+    <li ng-repeat="kill in lodgedKills">
+      {{kill.murderer}} killed {{kill.victim}} on {{kill.datetime | date:'fullDate'}} {{kill.datetime | date:'mediumTime'}} at {{kill.loc}}
+    </li>
+  </ul>
+</div>
+
+<hr class="col-lg-12">
+
+<form role="form" name="lodgeKill" ng-submit="submitKill()" class="form-horizontal">
+	<fieldset>
+    <h2>Kill data</h2>
+		<div class"form-group">
+			<label for="murderer" class="control-label col-lg-4">Murderer's name</label>
+			<div class="col-lg-8">
+				<select name="murderer" ng-model="murderer" required class="form-control">
+					<option ng-repeat="player in players | orderBy:'name'">{{player.name}}</option>
+				</select>
+			</div>
+		</div>
+
+		<div class"form-group">
+			<label for="victim" class="control-label col-lg-4">Victim's name</label>
+			<div class="col-lg-8">
+				<select name="victim" ng-model="victim" required class="form-control">
+					<option ng-repeat="player in players | orderBy:'name'">{{player.name}}</option>
+				</select>
+			</div>
+		</div>
+
+		<div class"form-group">
+			<label for="victim" class="control-label col-lg-4">Murder Word</label>
+			<div class="col-lg-8">
+        <input class="form-control" ng-model="word">
+			</div>
+		</div>
+
+		<div class"form-group">
+			<label for="date time" class="control-label col-lg-4">Date and time of the kill</label>
+			<div class="col-lg-4">
+				<input name="date" type="date" ng-model="date" ng-change="updateDatetime()" required class="form-control">
+			</div>
+			<div class="col-lg-4">
+				<input name="time" type="text" ng-model="time" ng-change="updateDatetime()" required class="form-control">
+			</div>
+		</div>
+  </fieldset>
+	
+  <hr class="col-lg-12">
+
+  <fieldset>
+		<div class="form-group">
+			<label for="location" class="control-label col-lg-4">Location of the kill</label>
+			<div class="col-lg-8">
+				<input name="loc" type="text" ng-model="loc" required class="form-control">
+			</div>
+		</div>
+		
+    <div id="killLocation" class="form-group">
+      <div id="map_canvas" murder-location map="murderMap" marker="murderMarker" class="map pull-right"></div>
+      <div class="form-group">
+        <label class="control-label col-lg-4">Drag the marker to the location of your kill</label>
+        <span class="col-lg-3"><button type="button" ng-click="murderMap.panTo(murderMarker.getPosition())" class="btn">Pan to Marker</button></span>
+      </div>
+    </div>
+  </fieldset>
+
+	<hr class="col-lg-12">
+
+  <fieldset>
+    <h2>Extra kill data</h2>
+    <div class"form-group">
+      <label for="killIcon" class="control-label col-lg-4">Kill Icon</label>
+			<div class="col-lg-1"><img ng-src="images/icons/{{killIcon}}" class=img-responsive"></div>
+			<div class="col-lg-7">
+				<select name="killIcon" ng-model="killIcon" ng-init="killIcon='delete.png'" class="form-control">
+					<option ng-repeat="icon in killIcons">{{icon}}</option>
+				</select>
+			</div>
+    </div>
+
+    <div class"form-group">
+      <label for="witnesses" class="control-label col-lg-4">Number of witnesses</label>
+			<div class="col-lg-8">
+				<input name="witnesses" type="text" ng-model="witnesses" class="form-control">
+	  	</div>
+    </div>
+
+    <div class"form-group">
+      <label for="activity" class="control-label col-lg-4">Activity</label>
+			<div class="col-lg-8">
+      	<input name="activity" type="text" ng-model="activity" class="form-control">
+			</div>
+    </div>
+
+    <div class"form-group">
+      <label for="comment" class="control-label col-lg-4">Comment</label>
+			<div class="col-lg-8">
+				<textarea name="comment" type="text" ng-model="comment" class="form-control"></textarea>
+			</div>
+    </div>
+  </fieldset>
+
+	<hr class="col-lg-12">
+
+  <fieldset>
+    <div class="col-lg-12">
+      <input type="submit" value="Lodge Kill" class="btn btn-primary">
+      <input type="submit" value="Lodge Kill and return" ng-click="returnHome()" class="btn">
+    </div>
+  </fieldset>
+</form> 

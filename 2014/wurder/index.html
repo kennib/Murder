@@ -1,0 +1,41 @@
+<!doctype html>
+<html ng-app="murder">
+  <head>
+    <meta charset="utf-8">
+    <script src="http://www.parsecdn.com/js/parse-1.1.15.min.js"></script>
+    <script src="http://maps.googleapis.com/maps/api/js?libraries=visualization&sensor=false"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.0.3/angular.js"></script>
+    <script src="http://d3js.org/d3.v3.js"></script>
+    <script src="diagrams.js"></script>
+    <script src="killIcons.js"></script>
+    <script src="murderdata.js"></script>
+    <script src="murdertime.js"></script>
+    <script src="murdergraph.js"></script>
+    <script src="murderplot.js"></script>
+    <script src="murdermaps.js"></script>
+    <script src="murder.js"></script>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=2.0, user-scalable=no" />
+    <link href="css/bootstrap.css" rel="stylesheet" media="screen">
+    <link href="css/main.css" rel="stylesheet" media="screen">
+
+    <title>NCSS Wurder</title>
+  </head>
+
+  <body>
+    <header>
+      <nav class="navbar">
+				<a href="#/" class="navbar-brand">NCSS Wurder</a>
+				<ul class="nav navbar-nav">
+					<li><a href="#/lodgekill">Lodge Kill</a></li>
+					<li><a href="#/murdergraph">Murder Graph</a></li>
+					<li><a href="#/murdermap">Murder Map</a></li>
+					<li><a href="#/scoreboard">Scoreboard</a></li>
+				</ul>
+      </nav>
+    </header>
+
+    <section ng-view class="container">
+    </section>
+  </body>
+</html>
